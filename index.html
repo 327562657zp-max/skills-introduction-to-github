@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050814" />
+  <title>太阳系时空 · 4D轨道模拟</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="太阳系时空首页">
+        <span class="brand-mark"><span></span></span>
+        <span>ORBIT<span class="brand-light">/</span>TIME</span>
+      </a>
+      <div class="topbar-meta"><span class="live-dot"></span>交互式天体模拟 <span class="meta-divider">/</span> HELIOCENTRIC MODEL</div>
+      <button class="icon-button" id="resetView" title="重置视角" aria-label="重置视角">⟳</button>
+    </header>
+
+    <section class="intro">
+      <div class="eyebrow"><span>01</span> SOLAR SYSTEM EXPLORER</div>
+      <h1>太阳系<span class="title-accent">·</span>时空</h1>
+      <p>在三维空间中观察行星轨道，让时间成为第四个维度。拖动旋转视角，滚轮缩放，探索行星的运行轨迹。</p>
+    </section>
+
+    <section class="simulation" aria-label="太阳系轨道模拟">
+      <div class="scene-wrap" id="sceneWrap">
+        <div id="scene" role="img" aria-label="太阳和八大行星的三维轨道模型"></div>
+        <div class="scene-vignette"></div>
+        <div class="scene-label scene-label-left"><span class="label-kicker">太阳系 · 日心模型</span><strong>3D <i>+</i> TIME</strong></div>
+        <div class="scene-label scene-label-right"><span class="live-dot"></span><span id="sceneStatus">运行中</span></div>
+        <div class="axis-hint"><span>X</span><span>Y</span><span>Z</span></div>
+        <div class="planet-tooltip" id="planetTooltip" hidden></div>
+        <div class="loading" id="loading"><span class="loader"></span>正在构建太阳系…</div>
+        <div class="scene-help">拖动旋转 <b>·</b> 滚轮缩放 <b>·</b> 点击行星查看</div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="panel-heading"><div><span class="eyebrow small">CELESTIAL BODIES</span><h2>天体图鉴</h2></div><span class="body-count">08 <i>PLANETS</i></span></div>
+        <div class="planet-list" id="planetList"></div>
+        <div class="detail-card" id="detailCard">
+          <div class="detail-top"><span class="detail-dot" id="detailDot"></span><span class="detail-type" id="detailType">恒星 · G2V</span><span class="detail-distance" id="detailDistance">中心</span></div>
+          <h3 id="detailName">太阳</h3>
+          <p id="detailDescription">太阳系的中心恒星，为行星提供光与热。</p>
+          <div class="detail-stats">
+            <div><span>公转周期</span><strong id="detailPeriod">—</strong></div>
+            <div><span>轨道半径</span><strong id="detailOrbit">—</strong></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="control-panel" aria-label="时间与显示控制">
+      <div class="time-controls">
+        <button class="play-button" id="playButton" aria-label="暂停动画" title="播放/暂停"><span class="pause-icon"><i></i><i></i></span></button>
+        <div class="time-readout"><span class="control-label">模拟时间</span><strong id="dateDisplay">2025 <small>年 01 月 01 日</small></strong></div>
+        <div class="timeline-wrap">
+          <div class="timeline-labels"><span>2000</span><span>时间轴 <i>·</i> 100年</span><span>2100</span></div>
+          <input id="timeSlider" type="range" min="0" max="1000" value="250" aria-label="模拟时间，范围2000年至2100年" />
+        </div>
+      </div>
+      <div class="control-divider"></div>
+      <div class="display-controls">
+        <label class="toggle"><input id="orbitsToggle" type="checkbox" checked><span class="toggle-ui"></span><span>轨道线</span></label>
+        <label class="toggle"><input id="trailsToggle" type="checkbox" checked><span class="toggle-ui"></span><span>运行轨迹</span></label>
+        <label class="speed-control"><span>速度</span><select id="speedSelect" aria-label="动画速度"><option value="1">1×</option><option value="5" selected>5×</option><option value="20">20×</option><option value="100">100×</option></select></label>
+      </div>
+    </section>
+
+    <footer class="footer"><span>轨道形状与倾角基于近似天文参数；行星大小及距离为视觉示意，并非真实比例。</span><span>ONE SUN <i>·</i> EIGHT PLANETS <i>·</i> INFINITE TIME</span></footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
